@@ -6,17 +6,21 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Data
 @Entity
-public class Administrator {
+public class HotelRoom {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String firstName;
+    @NotNull
+    private List<Room> rooms;
 
-    private String lastName;
-
-
+    private String currency;
+    @NotNull
+    private int cost;
 }
