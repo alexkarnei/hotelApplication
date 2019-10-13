@@ -16,11 +16,11 @@ public class Hotel extends AbstractEntity {
 
     private String hotelTitle;
 
-    private String hotelName;
+    private int starsQuantity;
 
     private String address;
 
-    private int rooms;
+    private int roomsQuantity;
 
     @OneToMany(fetch = FetchType.LAZY,
             cascade = CascadeType.ALL,
