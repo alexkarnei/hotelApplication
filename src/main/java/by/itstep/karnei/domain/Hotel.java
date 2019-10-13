@@ -1,9 +1,13 @@
 package by.itstep.karnei.domain;
 
 import by.itstep.karnei.domain.abstractClasses.AbstractEntity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 import java.util.List;
 
 @Data
@@ -16,9 +20,12 @@ public class Hotel extends AbstractEntity {
 
     private String address;
 
-    private String pictureId;
-
     private int rooms;
 
-    private List<String> pictures;
+    @OneToMany(fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            mappedBy = "hotel")
+    @JsonIgnore
+    List<HotelPictures> pictures;
 }
