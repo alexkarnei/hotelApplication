@@ -1,26 +1,26 @@
 package by.itstep.karnei.domain;
 
+import by.itstep.karnei.domain.abstractClasses.AbstractEntity;
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Data
 @Entity
-public class HotelRoom {
+public class HotelRoom extends AbstractEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @ElementCollection(targetClass = RoomType.class, fetch = FetchType.EAGER)
+    @CollectionTable(name = "room_type", joinColumns = @JoinColumn(name = "room_id"))
+    @Enumerated(EnumType.STRING)
+    private List<RoomType> roomType;
 
     @NotNull
-    private List<Room> rooms;
+    private int roomQuantity;
 
-    private String currency;
+    private String roomPicture;
+
     @NotNull
     private int cost;
 }

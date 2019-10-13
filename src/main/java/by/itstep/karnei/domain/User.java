@@ -1,6 +1,6 @@
 package by.itstep.karnei.domain;
 
-import lombok.Data;
+import by.itstep.karnei.domain.abstractClasses.AbstractEntity;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
@@ -13,15 +13,11 @@ import java.util.Collection;
 import java.util.Objects;
 import java.util.Set;
 
-
 @Entity
 @Table(name = "user")
 @Getter
 @Setter
-public class User implements UserDetails {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+public class User extends AbstractEntity implements UserDetails {
 
     @NotBlank(message = "Username can't be empty")
     private String username;
@@ -95,6 +91,4 @@ public class User implements UserDetails {
     public int hashCode() {
         return Objects.hash(getId());
     }
-
-
 }
