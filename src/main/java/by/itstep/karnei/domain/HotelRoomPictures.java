@@ -18,8 +18,7 @@ public class HotelRoomPictures extends AbstractEntity {
     private  String title;
     private String url;
 
-
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "hotelRoom_id")
+    @JoinColumn(name = "hotel_room_id")
     private HotelRoom hotelRoom;
 }

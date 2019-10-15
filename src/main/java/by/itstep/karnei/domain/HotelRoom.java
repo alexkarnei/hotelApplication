@@ -6,6 +6,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 import java.util.List;
 
 @Data
@@ -27,6 +28,23 @@ public class HotelRoom extends AbstractEntity {
     @JsonIgnore
     List<HotelRoomPictures> roomPicture;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "hotel_id")
+    private Hotel hotel;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "guest_id")
+    private Guest guest;
+
     @NotNull
     private int cost;
+
+    @NotNull
+    private LocalDate checkIn;
+    @NotNull
+    private LocalDate checkOut;
+
+    private boolean isFree = true;
+
+
 }
