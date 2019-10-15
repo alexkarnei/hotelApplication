@@ -19,7 +19,6 @@ public class HotelPictures extends AbstractEntity {
 
     private String url;
 
-    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "hotel_id")
     private Hotel hotel;

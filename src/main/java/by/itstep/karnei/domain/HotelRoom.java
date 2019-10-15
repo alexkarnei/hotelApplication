@@ -23,7 +23,7 @@ public class HotelRoom extends AbstractEntity {
     @OneToMany(fetch = FetchType.LAZY,
             cascade = CascadeType.ALL,
             orphanRemoval = true,
-            mappedBy = "hotel_room")
+            mappedBy = "hotelRoom")
     @JsonIgnore
     List<HotelRoomPictures> roomPicture;
 
