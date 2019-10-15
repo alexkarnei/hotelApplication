@@ -18,11 +18,11 @@ public class Guest extends AbstractEntity {
     @NotNull
     private String passport;
 
-    @OneToMany(fetch = FetchType.LAZY,
+   /* @OneToMany(fetch = FetchType.LAZY,
             cascade = CascadeType.ALL,
             orphanRemoval = true,
             mappedBy = "guest")
 //    @JsonIgnore
     Set<HotelRoom> hotelRoom;
-
+*/
 }
