@@ -32,9 +32,9 @@ public class HotelRoom extends AbstractEntity {
     @JoinColumn(name = "hotel_id")
     private Hotel hotel;
 
-   /* @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "guest_id")
-    private Guest guest;*/
+    private Guest guest;
 
     @NotNull
     private int cost;
