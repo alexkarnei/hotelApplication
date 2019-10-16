@@ -20,7 +20,7 @@ import java.time.LocalDate;
 import java.util.Map;
 
 @Controller
-@RequestMapping("guests")
+@RequestMapping ("guests")
 public class GuestController {
 
     @Autowired
