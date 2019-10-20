@@ -14,8 +14,8 @@
     }
 
     h3 {
-        margin-left: 400px;
-        margin-right: 400px;
+        margin-left: 300px;
+        margin-right: 300px;
         color: gray;
         text-align: center;
     }
@@ -29,13 +29,13 @@
                 <a class="nav-link" href="/">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/cars">Cars list</a>
+                <a class="nav-link" href="/guests">Guest list</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/history">History list</a>
+                <a class="nav-link" href="/hotel">Hotel list</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/owners">Owners list</a>
+                <a class="nav-link" href="/hotelRoom">Hotel room list</a>
             </li>
             <#if isAdmin>
                 <li class="nav-item">

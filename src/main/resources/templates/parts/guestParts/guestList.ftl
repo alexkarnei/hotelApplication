@@ -7,6 +7,8 @@
         <th scope="col">First name</th>
         <th scope="col">Last name</th>
         <th scope="col">Passport</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
     </tr>
     </thead>
     <#list page.content as guest>
