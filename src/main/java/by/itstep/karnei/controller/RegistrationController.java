@@ -47,7 +47,6 @@ public class RegistrationController {
                 Model model
         ) {
             String url = String.format(CAPTCHA_URL, secret, captchaResponce);
-            System.out.println(url);
             CaptchaResponseDto captchaResponseDto = restTemplate.postForObject(url, Collections.emptyList(), CaptchaResponseDto.class);
             System.out.println(captchaResponseDto.toString());
             if (!captchaResponseDto.isSuccess()){
@@ -72,7 +71,7 @@ public class RegistrationController {
 
                 return "registration";
             }
-
+            System.out.println(user.getUsername());
             if (!userService.addUser(user)) {
                 model.addAttribute("usernameError", "User exists!");
 
