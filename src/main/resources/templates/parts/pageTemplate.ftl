@@ -20,8 +20,7 @@
             }
             body {
                 margin-bottom: 60px;
-                background: gray
-            ;
+                background: image("templates/image/background.jpg");
             }
             #footer a{color:#000;}
             #footer a:hover{color:#ff0000;text-decoration:none;}
