@@ -14,13 +14,27 @@
 
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
         <style>
-            #footer a{color:cadetblue;}
-            #footer a:hover{color:#fff;text-decoration:none;}
+            html {
+                position: relative;
+                min-height: 100%;
+            }
+            body {
+                margin-bottom: 60px;
+            }
+            #footer a{color:#000;}
+            #footer a:hover{color:#ff0000;text-decoration:none;}
+            #footer {
+                position: absolute;
+                bottom: 0;
+                width: 100%;
+                height: 60px;
+                background-color: #a9a9a9;
+            }
             .footer-menu{float:left;}
-            .footer-menu ul{list-style:none;margin:0;padding:0;}
+            .footer-menu ul{list-style:none;margin:0;padding:15px;}
             .footer-menu ul li{display:inline-block; color: dodgerblue}
             .footer-menu ul li+li::before{content:"|";display:inline-block;margin:0 6px 0 4px;vertical-align:1px;}
-            .footer-rights{float:right;}
+            .footer-rights{float:right; padding: 15px;}
         </style>
     </head>
     <body>
@@ -39,7 +53,7 @@
         <div class="container">
             <div class="footer-menu">
                 <ul>
-                    <li><a href="/privacy">Privacy Policy</a></li>
+                    <li><a href="privacy.ftl">Privacy Policy</a></li>
                     <li><a href="/about">About Us</a></li>
                     <li><a href="/contact">Contact Us</a></li>
                 </ul>

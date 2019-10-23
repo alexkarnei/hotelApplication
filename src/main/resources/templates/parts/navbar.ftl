@@ -14,8 +14,8 @@
     }
 
     h3 {
-        margin-left: 300px;
-        margin-right: 300px;
+        margin-left: auto;
+        margin-right: auto;
         color: gray;
         text-align: center;
     }

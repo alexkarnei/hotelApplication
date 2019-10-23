@@ -2,6 +2,6 @@
 <#import "parts/pageTemplate.ftl" as pt>
 
 <@pt.page>
-    <h1>Hello, <#if user??>${name}<#else>guest</#if>!</h1>
+    <h1>Hello, <#if user??>${user.username}<#else>guest</#if>!</h1>
     <div>It's a Hotel application</div>
 </@pt.page>
