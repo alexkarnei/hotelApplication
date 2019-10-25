@@ -29,7 +29,9 @@
                 <a class="nav-link" href="/">Home</a>
             </li>
             <li class="nav-item">
+                <#if isAdmin>
                 <a class="nav-link" href="/guests">Guest list</a>
+                </#if>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/hotel">Hotel list</a>

@@ -1,8 +1,10 @@
 package by.itstep.karnei.controller;
 
+
 import by.itstep.karnei.domain.User;
 import by.itstep.karnei.dto.CaptchaResponseDto;
 import by.itstep.karnei.service.UserService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -21,70 +23,68 @@ import java.util.Map;
 
 @Controller
 public class RegistrationController {
+    private final static String CAPTCHA_URL= "https://www.google.com/recaptcha/api/siteverify?secret=%s&response=%s";
 
-        private final static String CAPTCHA_URL = "https://www.google.com/recaptcha/api/siteverify?secret=%s&response=%s";
+    @Autowired
+    private UserService userService;
 
-        @Autowired
-        private UserService userService;
+    @Value("${recaptcha.secret}")
+    private String secret;
 
-        @Value("${recaptcha.secret}")
-        private String secret;
+    @Autowired
+    RestTemplate restTemplate;
 
-        @Autowired
-        RestTemplate restTemplate;
+    @GetMapping("/registration")
+    public String registration() {
+        return "registration";
+    }
 
-        @GetMapping("/registration")
-        public String registration() {
+    @PostMapping("/registration")
+    public String addUser(
+            @RequestParam("passwordConfirm") String passwordConfirm,
+            @RequestParam("g-recaptcha-response") String captchaResponce,
+            @Valid User user,
+            BindingResult bindingResult,
+            Model model
+    ){
+        System.out.println(user.getPassword());
+        String url = String.format(CAPTCHA_URL, secret, captchaResponce);
+        CaptchaResponseDto captchaResponseDto = restTemplate.postForObject(url, Collections.emptyList(), CaptchaResponseDto.class);
+
+        if (!captchaResponseDto.isSuccess()){
+            model.addAttribute("captchaError", "Fill Captcha");
+        }
+
+        boolean isConfirmEmpty = StringUtils.isEmpty(passwordConfirm);
+
+        if (isConfirmEmpty) {
+            model.addAttribute("passwordConfirmError","Password confirmation can't be empty");
+        }
+
+        if (user.getPassword() != null && !user.getPassword().equals(passwordConfirm)){
+            model.addAttribute("passwordError", "Passwords are differents!");
+        }
+
+        if (isConfirmEmpty || bindingResult.hasErrors() || !captchaResponseDto.isSuccess()){
+            Map<String, String> errors = ControllerUtils.getErrors(bindingResult);
+            model.mergeAttributes(errors);
+
             return "registration";
         }
 
-        @PostMapping("/registration")
-        public String addUser(
-                @RequestParam("passwordConfirm") String passwordConfirm,
-                @RequestParam("g-recaptcha-response") String captchaResponce,
-                @Valid User user,
-                BindingResult bindingResult,
-                Model model
-        ) {
-            String url = String.format(CAPTCHA_URL, secret, captchaResponce);
-            CaptchaResponseDto captchaResponseDto = restTemplate.postForObject(url, Collections.emptyList(), CaptchaResponseDto.class);
-            System.out.println(captchaResponseDto.toString());
-            if (!captchaResponseDto.isSuccess()){
-                model.addAttribute("captchaError", "Fill Captcha");
-            }
+        if(!userService.addUser(user)){
+            model.addAttribute("usernameError", "User exists!");
 
-            boolean isConfirmEmpty = StringUtils.isEmpty(passwordConfirm);
+            return "registration";
+        } else {
+            model.addAttribute("message", "You must activate your account. Activation link sent to your email.");
+            model.addAttribute("messageType", "info");
 
-            if (isConfirmEmpty) {
-                model.addAttribute("passwordConfirmError", "Password confirmation can't be empty");
-
-            }
-
-            if (user.getPassword() != null && !user.getPassword().equals(passwordConfirm)) {
-                model.addAttribute("passwordError", "Passwords are differents!");
-
-            }
-
-            if (isConfirmEmpty || bindingResult.hasErrors() /*|| !captchaResponseDto.success*/) {
-                Map<String, String> errors = ControllerUtils.getErrors(bindingResult);
-                model.mergeAttributes(errors);
-
-                return "registration";
-            }
-            System.out.println(user.getUsername());
-            if (!userService.addUser(user)) {
-                model.addAttribute("usernameError", "User exists!");
-
-                return "registration";
-            } else {
-                model.addAttribute("message", "You must activate your account. Activation link sent to your email.");
-                model.addAttribute("messageType", "info");
-
-                return "login";
-            }
+            return "login";
         }
+    }
 
-        @GetMapping("/activate/{code}")
+    @GetMapping("/activate/{code}")
         public String activate(Model model, @PathVariable String code) {
             boolean isActivated = userService.activateUser(code);
 

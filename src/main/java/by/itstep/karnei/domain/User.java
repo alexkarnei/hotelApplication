@@ -13,10 +13,10 @@ import java.util.Collection;
 import java.util.Objects;
 import java.util.Set;
 
-@Entity
-@Table(name = "usr")
 @Getter
 @Setter
+@Entity
+@Table(name = "usr")
 public class User extends AbstractEntity implements UserDetails {
 
     @NotBlank(message = "Username can't be empty")
@@ -38,6 +38,10 @@ public class User extends AbstractEntity implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Set<UserRole> userRoles;
 
+   /* @OneToOne(mappedBy = "user")
+    @PrimaryKeyJoinColumn
+    Guest guest;
+*/
     public boolean isAdmin() {
         return userRoles.contains(UserRole.ADMIN);
     }
@@ -78,17 +82,17 @@ public class User extends AbstractEntity implements UserDetails {
         return isActive();
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof User)) return false;
-        if (!super.equals(o)) return false;
-        User user = (User) o;
-        return Objects.equals(getId(), user.getId());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getId());
-    }
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (!(o instanceof User)) return false;
+//        if (!super.equals(o)) return false;
+//        User user = (User) o;
+//        return Objects.equals(getId(), user.getId());
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(getId());
+//    }
 }
