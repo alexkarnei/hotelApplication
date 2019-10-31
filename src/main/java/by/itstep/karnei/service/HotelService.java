@@ -1,8 +1,7 @@
 package by.itstep.karnei.service;
 
-import by.itstep.karnei.domain.Guest;
+
 import by.itstep.karnei.domain.Hotel;
-import by.itstep.karnei.repository.GuestRepo;
 import by.itstep.karnei.repository.HotelRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

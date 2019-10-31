@@ -1,37 +1,17 @@
 <#include "security.ftl">
 <#import "login.ftl" as l>
-<style>
-    li {
-        list-style-type: none;
-    }
+<link rel="stylesheet" href="../../static/css/pageTemplate.css" type="text/css" media="screen"/>
 
-    a {
-        color: white;
-    }
-
-    .navbar-text {
-        color: white;
-    }
-
-    h3 {
-        margin-left: auto;
-        margin-right: auto;
-        color: gray;
-        text-align: center;
-    }
-
-</style>
-
-<div class="pos-f-t">
-    <div class="collapse" id="navbarToggleExternalContent">
-        <div class="bg-dark p-4">
+<nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">HotelApp</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="/">Home</a>
-            </li>
-            <li class="nav-item">
-                <#if isAdmin>
-                <a class="nav-link" href="/guests">Guest list</a>
-                </#if>
+                <a class="nav-link" href="/main">Home </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/hotel">Hotel list</a>
@@ -49,16 +29,16 @@
                     <a class="nav-link" href="/user/profile">Profile</a>
                 </li>
             </#if>
-            </ul>
-        </div>
-    </div>
-    <nav class="navbar navbar-dark bg-dark">
+        </ul>
+        <form class="form-inline" style="padding-right: 20px">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-sm btn-outline-secondary my-2 my-sm-0" type="submit">Search</button>
+        </form>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent"
                 aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <h3> Hotel application </h3>
-        <div class="navbar-text mr-3"><#if user??>${name}<#else>Please, login</#if></div>
+        <div class="navbar-text mr-3"><#if user??>${name}<#else> Please, login</#if></div>
         <@l.logout/>
-    </nav>
-</div>
+    </div>
+</nav>

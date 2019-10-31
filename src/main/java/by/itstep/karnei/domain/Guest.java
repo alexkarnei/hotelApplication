@@ -18,10 +18,6 @@ public class Guest extends AbstractEntity {
     @NotNull
     private String passport;
 
-   /* @OneToOne
-    @PrimaryKeyJoinColumn
-    User user;*/
-
     @OneToMany(fetch = FetchType.LAZY,
             cascade = CascadeType.ALL,
             orphanRemoval = true,

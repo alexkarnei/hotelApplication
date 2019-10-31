@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Collection;
 import java.util.Objects;
 import java.util.Set;
@@ -18,6 +19,13 @@ import java.util.Set;
 @Entity
 @Table(name = "usr")
 public class User extends AbstractEntity implements UserDetails {
+
+    @NotBlank (message = "First name can't be empty")
+    private String firstName;
+    @NotBlank(message = "Last name can't be empty")
+    private String lastName;
+    @NotBlank(message = "Passport can't be empty")
+    private String passport;
 
     @NotBlank(message = "Username can't be empty")
     private String username;
