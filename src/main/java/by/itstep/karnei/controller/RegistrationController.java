@@ -39,6 +39,7 @@ public class RegistrationController {
         return "registration";
     }
 
+
     @PostMapping("/registration")
     public String addUser(
             @RequestParam("passwordConfirm") String passwordConfirm,
@@ -47,11 +48,10 @@ public class RegistrationController {
             BindingResult bindingResult,
             Model model
     ){
-        System.out.println(user.getPassword());
         String url = String.format(CAPTCHA_URL, secret, captchaResponce);
         CaptchaResponseDto captchaResponseDto = restTemplate.postForObject(url, Collections.emptyList(), CaptchaResponseDto.class);
 
-        if (!captchaResponseDto.isSuccess()){
+        if (!captchaResponseDto.isSuccess()) {
             model.addAttribute("captchaError", "Fill Captcha");
         }
 

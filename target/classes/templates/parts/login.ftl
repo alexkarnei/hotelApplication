@@ -1,6 +1,47 @@
 <#include "security.ftl">
 <#macro login path isRegisterForm>
-    <form action="${path}" method="post" >
+    <form action="${path}" method="post" xmlns="http://www.w3.org/1999/html">
+        <#if isRegisterForm>
+        <div class="form-group row">
+        <label class="col-sm-2 col-form-label">First Name: </label>
+        <div class="col-sm-6">
+            <input type="text" name="username"
+                   class="form-control ${(firstNameError??)?string('is-invalid', '')}" placeholder="First name"
+                   value="<#if user??>${user.firstName}</#if>"/>
+            <#if firstNameError??>
+                <div class="invalid-feedback">
+                    ${firstNameError}
+                </div>
+            </#if>
+        </div>
+        </div>
+        <div class="form-group row">
+        <label class="col-sm-2 col-form-label"> Last Name: </label>
+        <div class="col-sm-6">
+            <input type="text" name="username"
+                   class="form-control ${(lastNameError??)?string('is-invalid', '')}" placeholder="Last name"
+                   value="<#if user??>${user.lastName}</#if>"/>
+            <#if lastNameError??>
+                <div class="invalid-feedback">
+                    ${lastNameError}
+                </div>
+            </#if>
+        </div>
+        </div>
+        <div class="form-group row">
+        <label class="col-sm-2 col-form-label"> Passport: </label>
+        <div class="col-sm-6">
+            <input type="text" name="username"
+                   class="form-control ${(passportError??)?string('is-invalid', '')}" placeholder="Passport"
+                   value="<#if user??>${user.passport}</#if>"/>
+            <#if passportError??>
+                <div class="invalid-feedback">
+                    ${passportError}
+                </div>
+            </#if>
+        </div>
+        </div>
+        </#if>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label"> User Name: </label>
             <div class="col-sm-6">
@@ -67,7 +108,7 @@
         </#if>
         <input type="hidden" name="_csrf" value="${_csrf.token}"/>
         <#if !isRegisterForm><a href="/registration">Add new user</a></#if>
-        <button type="submit" value="Sign In" class="btn btn-primary" >
+        <button type="submit" value="Sign In" class="btn btn-primary">
             <#if isRegisterForm>
                 Create
             <#else>
@@ -80,8 +121,9 @@
 <#macro logout>
     <form action="/logout" method="post">
         <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-        <button type="submit" class="btn btn-light" >
-            <#if user??>Sign Out<#else>Log in</#if>
+        <button type="submit" class="btn btn-light">
+            <#if users??>Sign Out<#else>Log in</#if>
         </button>
     </form>
 </#macro>
+

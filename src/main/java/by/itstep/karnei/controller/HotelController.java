@@ -27,7 +27,7 @@ public class HotelController {
     HotelService hotelService;
 
     @GetMapping
-    public String guestList(Model model, @PageableDefault(sort = {"id"}, direction = Sort.Direction.ASC) Pageable pageable) {
+    public String hotelList(Model model, @PageableDefault(sort = {"id"}, direction = Sort.Direction.ASC) Pageable pageable) {
         Page<Hotel> page = hotelService.getAll(pageable);
         model.addAttribute("page", page);
         model.addAttribute("url", "/hotel");
@@ -35,7 +35,7 @@ public class HotelController {
     }
 
     @PostMapping
-    public String guestSave(
+    public String hotelSave(
             @Valid Hotel hotel,
             Model model,
             BindingResult bindingResult,
@@ -55,8 +55,8 @@ public class HotelController {
             model.addAttribute("hotel", hotels);
             Map<String, String> errorsMap = ControllerUtils.getErrors(bindingResult);
             model.mergeAttributes(errorsMap);
-            model.addAttribute("guest", hotel);
-            return "guests";
+            model.addAttribute("hotel", hotel);
+            return "hotel";
         } else {
             hotelService.saveHotel(hotel);
             return "redirect:hotel";
