@@ -9,15 +9,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.util.Collection;
 import java.util.Objects;
 import java.util.Set;
-
+@Entity
 @Getter
 @Setter
-@Entity
-@Table(name = "usr")
+@Table(name = "users")
 public class User extends AbstractEntity implements UserDetails {
 
     @NotBlank (message = "First name can't be empty")
@@ -34,6 +32,9 @@ public class User extends AbstractEntity implements UserDetails {
     private String password;
 
     private boolean active;
+
+    private boolean isDeleted = false;
+
 
     @Email(message = "Email is not correct")
     @NotBlank(message = "Email can't be empty")
@@ -90,17 +91,17 @@ public class User extends AbstractEntity implements UserDetails {
         return isActive();
     }
 
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (!(o instanceof User)) return false;
-//        if (!super.equals(o)) return false;
-//        User user = (User) o;
-//        return Objects.equals(getId(), user.getId());
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        return Objects.hash(getId());
-//    }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User)) return false;
+        if (!super.equals(o)) return false;
+        User user = (User) o;
+        return Objects.equals(getId(), user.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId());
+    }
 }

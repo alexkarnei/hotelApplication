@@ -7,6 +7,8 @@ import lombok.Data;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.chrono.ChronoLocalDateTime;
 import java.util.List;
 
 @Data
@@ -17,9 +19,6 @@ public class HotelRoom extends AbstractEntity {
     @CollectionTable(name = "room_type", joinColumns = @JoinColumn(name = "room_id"))
     @Enumerated(EnumType.STRING)
     private List<RoomType> roomType;
-
-    @NotNull
-    private int roomQuantity;
 
     @OneToMany(fetch = FetchType.LAZY,
             cascade = CascadeType.ALL,
@@ -35,12 +34,9 @@ public class HotelRoom extends AbstractEntity {
     @NotNull
     private int cost;
 
-    @NotNull
     private LocalDate checkIn;
-    @NotNull
     private LocalDate checkOut;
 
-    private boolean isFree = true;
-
+    private boolean isFree;
 
 }

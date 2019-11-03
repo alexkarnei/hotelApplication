@@ -18,6 +18,8 @@ public class Hotel extends AbstractEntity {
 
     private int starsQuantity;
 
+    private String city;
+
     private String address;
 
     private int roomsQuantity;

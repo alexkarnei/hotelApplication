@@ -16,9 +16,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="/hotel">Hotel list</a>
             </li>
-            <li class="nav-item">
+            <#--<li class="nav-item">
                 <a class="nav-link" href="/hotelRoom">Hotel room list</a>
-            </li>
+            </li>-->
             <#if isAdmin>
                 <li class="nav-item">
                     <a class="nav-link" href="/user">User list</a>
@@ -30,10 +30,6 @@
                 </li>
             </#if>
         </ul>
-        <form class="form-inline" style="padding-right: 20px">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-sm btn-outline-secondary my-2 my-sm-0" type="submit">Search</button>
-        </form>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent"
                 aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

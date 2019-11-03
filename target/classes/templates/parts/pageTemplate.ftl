@@ -1,6 +1,7 @@
 <#macro page>
     <!DOCTYPE html>
-    <html lang="en" xmlns="http://www.w3.org/1999/html">
+    <html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html"
+          xmlns="http://www.w3.org/1999/html">
     <head>
         <meta charset="UTF-8"/>
         <title>HotelApp</title>
@@ -20,67 +21,23 @@
               crossorigin="anonymous">
 
         <style>
-
-            html {
-                position: relative;
-                min-height: 100%;
-            }
-
             body {
-                margin-bottom: 60px;
-                background-image: url("image/background.jpg");
-            }
-
-            #footer a {
-                color: #000;
-            }
-
-            #footer a:hover {
-                color: #ffffff;
-                text-decoration: none;
+                background-image: url('https://s1.1zoom.me/big0/1000/431571-Kysb.jpg');
+                background-repeat: no-repeat;
+                background-size: cover;
             }
 
             #footer {
-                position: absolute;
+                position: relative;
                 bottom: 0;
                 width: 100%;
-                height: 60px;
-                background-color: #a9a9a9;
-            }
 
-            .footer-menu {
-                float: left;
-            }
-
-            .footer-menu ul {
-                list-style: none;
-                margin: 0;
-                padding: 15px;
-            }
-
-            .footer-menu ul li {
-                display: inline-block;
-                color: dodgerblue
-            }
-
-            .footer-menu ul li + li::before {
-                content: "|";
-                display: inline-block;
-                margin: 0 6px 0 4px;
-                vertical-align: 1px;
-            }
-
-            .footer-rights {
-                float: right;
-                padding: 15px;
             }
         </style>
     </head>
     <body>
-
     <#include "navbar.ftl">
-
-    <div class="container mt-5">
+    <div class="container mt-5" style="height: auto">
         <#nested>
     </div>
     <!-- Optional JavaScript -->
@@ -95,17 +52,13 @@
             integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
             crossorigin="anonymous"></script>
     <footer id="footer">
-        <div class="container">
-            <div class="footer-menu">
-                <ul>
-                    <li><a href="/privacy">Privacy Policy</a></li>
-                    <li><a href="/about">About Us</a></li>
-                    <li><a href="/contact">Contact Us</a></li>
-                </ul>
-            </div>
-            <div class="footer-rights">
-                Copyright &copy; 2019. All rights reserved.
-            </div>
+        <div class="footer-copyright text-center py-3" style="color: white; font-weight: lighter">© 2019 Copyright Alex
+            Karnei:
+            <a href="https://github.com/alexkarnei?tab=repositories" style="color: wheat; font-weight: bold ">
+                GitHub</a>
+            <a href="https://www.facebook.com/alex.karnei" style="color: white; font-weight: lighter"><img
+                        src="https://i.pinimg.com/originals/9e/b3/84/9eb384eb1d9d09e82bcef6852d38085c.png"
+                        style="height: 30px; width: 30px;">Alex Karnei</a>
         </div>
     </footer>
     </body>

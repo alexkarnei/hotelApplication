@@ -3,11 +3,11 @@
     <form action="${path}" method="post" xmlns="http://www.w3.org/1999/html">
         <#if isRegisterForm>
         <div class="form-group row">
-        <label class="col-sm-2 col-form-label">First Name: </label>
+        <label class="col-sm-2 col-form-label" style="color: wheat">First Name: </label>
         <div class="col-sm-6">
-            <input type="text" name="username"
+            <input type="text" name="firstName"
                    class="form-control ${(firstNameError??)?string('is-invalid', '')}" placeholder="First name"
-                   value="<#if user??>${user.firstName}</#if>"/>
+                   value="<#if user?? && user.firstName??>${user.firstName}</#if>"/>
             <#if firstNameError??>
                 <div class="invalid-feedback">
                     ${firstNameError}
@@ -16,9 +16,9 @@
         </div>
         </div>
         <div class="form-group row">
-        <label class="col-sm-2 col-form-label"> Last Name: </label>
+        <label class="col-sm-2 col-form-label" style="color: wheat"> Last Name: </label>
         <div class="col-sm-6">
-            <input type="text" name="username"
+            <input type="text" name="lastName"
                    class="form-control ${(lastNameError??)?string('is-invalid', '')}" placeholder="Last name"
                    value="<#if user??>${user.lastName}</#if>"/>
             <#if lastNameError??>
@@ -29,9 +29,9 @@
         </div>
         </div>
         <div class="form-group row">
-        <label class="col-sm-2 col-form-label"> Passport: </label>
+        <label class="col-sm-2 col-form-label" style="color: wheat"> Passport: </label>
         <div class="col-sm-6">
-            <input type="text" name="username"
+            <input type="text" name="passport"
                    class="form-control ${(passportError??)?string('is-invalid', '')}" placeholder="Passport"
                    value="<#if user??>${user.passport}</#if>"/>
             <#if passportError??>
@@ -43,7 +43,7 @@
         </div>
         </#if>
         <div class="form-group row">
-            <label class="col-sm-2 col-form-label"> User Name: </label>
+            <label class="col-sm-2 col-form-label" style="color: wheat"> User Name: </label>
             <div class="col-sm-6">
                 <input type="text" name="username"
                        class="form-control ${(usernameError??)?string('is-invalid', '')}" placeholder="User name"
@@ -56,7 +56,7 @@
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Password: </label>
+            <label class="col-sm-2 col-form-label" style="color: wheat">Password: </label>
             <div class="col-sm-6">
                 <input type="password" name="password"
                        class="form-control ${(passwordError??)?string('is-invalid', '')}" placeholder="Password"
@@ -70,7 +70,7 @@
         </div>
         <#if isRegisterForm>
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Password: </label>
+                <label class="col-sm-2 col-form-label" style="color: wheat">Password: </label>
                 <div class="col-sm-6">
                     <input type="password" name="passwordConfirm"
                            class="form-control ${(passwordConfirmError??)?string('is-invalid', '')}"
@@ -84,7 +84,7 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Email: </label>
+                <label class="col-sm-2 col-form-label" style="color: wheat">Email: </label>
                 <div class="col-sm-6">
                     <input type="email" name="email"
                            class="form-control ${(emailError??)?string('is-invalid', '')}" placeholder="some@some.com"

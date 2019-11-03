@@ -1,33 +1,38 @@
 <#import "../pager.ftl" as p>
 <@p.pager url page/>
-<table class="table">
+<table class="table" style="background-color: white">
     <thead class="thead-dark">
     <tr>
         <th scope="col">Id</th>
-        <th scope="col">First name</th>
-        <th scope="col">Last name</th>
-        <th scope="col">Passport</th>
+        <th scope="col">Room type</th>
+        <th scope="col">IsFree</th>
+        <th scope="col">Cost</th>
+        <th scope="col">Hotel</th>
         <th scope="col"></th>
         <th scope="col"></th>
     </tr>
     </thead>
-    <#list page.content as guest>
+    <#list page.content as hotelRoom>
         <tbody>
-        <#if guest.id??>
-            <td>${guest.id}</td></#if>
-        <#if guest.firstName??>
-            <td>${guest.firstName}</td></#if>
-        <#if guest.lastName??>
-            <td>${guest.lastName}</td></#if>
-        <#if guest.passport??>
-            <td>${guest.passport}</td></#if>
+        <#if hotelRoom.id??>
+            <td>${hotelRoom.id}</td></#if>
+        <#if hotelRoom.roomType??>
+            <td><#list hotelRoom.roomType as roomType>${roomType}<#sep>, </#list></td></#if>
+        <#if hotelRoom.free??>
+            <td>${hotelRoom.free?then( "true"," false")}</td></#if>
+        <#if hotelRoom.cost??>
+            <td>${hotelRoom.cost}</td></#if>
+        <#if hotelRoom.hotel.id??>
+            <td>${hotelRoom.hotel.id}</td></#if>
         </td>
-        <td><a href="hotelRoom/${guest.id}">Add hotel room</a>
+        <td><a href="hotelRoomPicture/${hotelRoom.id}">View hotel picture</a>
+        </td>
+        <td><a href="bookHotelRoom/${hotelRoom.id}">Book hotel room</a>
         </td>
         </tr>
         </tbody>
     <#else>
-        Guest list is empty!
+        Hotel room list is empty!
     </#list>
 </table>
 <@p.pager url page/>
