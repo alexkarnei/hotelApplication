@@ -29,7 +29,6 @@
         </td>
         <td><a href="bookHotelRoom/${hotelRoom.id}">Book hotel room</a>
         </td>
-        </tr>
         </tbody>
     <#else>
         Hotel room list is empty!

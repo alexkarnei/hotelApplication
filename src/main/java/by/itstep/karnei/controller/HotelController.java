@@ -20,13 +20,13 @@ import javax.validation.Valid;
 import java.util.Map;
 
 @Controller
-@RequestMapping("hotel")
+@RequestMapping
 public class HotelController {
 
     @Autowired
     HotelService hotelService;
 
-    @GetMapping
+    @GetMapping("hotel")
     public String hotelList(Model model, @PageableDefault(sort = {"id"}, direction = Sort.Direction.ASC) Pageable pageable) {
         Page<Hotel> page = hotelService.getAll(pageable);
         model.addAttribute("page", page);
@@ -34,7 +34,42 @@ public class HotelController {
         return "hotel";
     }
 
-    @PostMapping
+    @GetMapping("hotelForm")
+    public String addHotel() {
+        return "hotelForm";
+    }
+
+    @PostMapping("hotelForm")
+    public String addHotel(@Valid Hotel hotel, BindingResult bindingResult, Model model,
+                           @PageableDefault(sort = {"id"}, direction = Sort.Direction.ASC) Pageable pageable) {
+
+        return getHotel(hotel, bindingResult, model, pageable);
+    }
+
+    private String getHotel(@Valid Hotel hotel, BindingResult bindingResult, Model model,
+                             @PageableDefault(sort = {"id"}, direction = Sort.Direction.ASC) Pageable pageable) {
+        Page<Hotel> page = hotelService.getAll(pageable);
+        model.addAttribute("url", "/hotel");
+        model.addAttribute("page", page);
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("page", page);
+            Map<String, String> errorsMap = ControllerUtils.getErrors(bindingResult);
+            model.mergeAttributes(errorsMap);
+            model.addAttribute("oneOwner", hotel);
+            return "hotelForm";
+        } else {
+            if (hotelService.saveHotel(hotel)) {
+                return "redirect:/hotel";
+            } else {
+                model.addAttribute("page", page);
+                model.addAttribute("savingReport", "Such hotel is already exist!");
+                model.addAttribute("oneHotel", hotel);
+                return "hotelForm";
+            }
+        }
+    }
+
+    @PostMapping("hotel")
     public String hotelSave(
             @Valid Hotel hotel,
             Model model,

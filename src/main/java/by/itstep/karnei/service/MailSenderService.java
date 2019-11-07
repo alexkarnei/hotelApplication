@@ -12,7 +12,7 @@ public class MailSenderService {
     @Autowired
     private JavaMailSender javaMailSender;
 
-    @Value("alex.karnei@gmail.com")
+    @Value("alex_karnei@inbox.ru")
     private String username;
 
     public void send(String emailTo, String subject, String message) {

@@ -1,13 +1,13 @@
 <#import "parts/pageTemplate.ftl" as pt>
 
 <@pt.page>
-    <h1>List of users</h1>
-    <table>
-        <thead>
+    <h1 style="color: wheat">List of users</h1>
+    <table table class="table" style="background: white">
+        <thead class="thead-dark">
         <tr>
-            <th>Name</th>
-            <th>Role</th>
-            <th></th>
+            <th scope="col">Name</th>
+            <th scope="col">Role</th>
+            <th scope="col">Edit user</th>
         </tr>
         </thead>
         <tbody>
@@ -15,7 +15,7 @@
             <tr>
                 <td>${user.username}</td>
                 <td><#list user.userRoles as role>${role}<#sep>, </#list></td>
-                <td><a href="/user${user.id}">edit</a></td>
+                <td><a href="/user/${user.id}" style="color: cadetblue">edit</a></td>
             </tr>
         </#list>
         </tbody>

@@ -47,7 +47,7 @@
             <div class="col-sm-6">
                 <input type="text" name="username"
                        class="form-control ${(usernameError??)?string('is-invalid', '')}" placeholder="User name"
-                       value="<#if user??>${user.username}</#if>"/>
+                       value="<#if user?? && user.username??>${user.username}</#if>"/>
                 <#if usernameError??>
                     <div class="invalid-feedback">
                         ${usernameError}
@@ -108,7 +108,7 @@
         </#if>
         <input type="hidden" name="_csrf" value="${_csrf.token}"/>
         <#if !isRegisterForm><a href="/registration">Add new user</a></#if>
-        <button type="submit" value="Sign In" class="btn btn-primary">
+        <button type="submit"class="btn btn-primary">
             <#if isRegisterForm>
                 Create
             <#else>
@@ -122,7 +122,7 @@
     <form action="/logout" method="post">
         <input type="hidden" name="_csrf" value="${_csrf.token}"/>
         <button type="submit" class="btn btn-light">
-            <#if users??>Sign Out<#else>Log in</#if>
+            <#if user??>Sign Out<#else>Log in</#if>
         </button>
     </form>
 </#macro>

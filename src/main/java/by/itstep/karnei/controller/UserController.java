@@ -13,29 +13,28 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/user")
 public class UserController {
 
     @Autowired
     private UserService userService;
 
     @PreAuthorize("hasAuthority('ADMIN')")
-    @GetMapping
+    @GetMapping("/user")
     public String userList(Model model) {
         model.addAttribute("users", userService.findAllUsers());
         return "userList";
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
-    @GetMapping("{user}")
+    @GetMapping("user/{user}")
     public String userEditForm(@PathVariable User user, Model model) {
         model.addAttribute("user", user);
         model.addAttribute("roles", UserRole.values());
-        return "userEdit";
+        return "editUser";
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
-    @PostMapping
+    @PostMapping("/user")
     public String userSave(
             @RequestParam String username,
             @RequestParam Map<String, String> form,
@@ -45,7 +44,7 @@ public class UserController {
         return "redirect:/user";
     }
 
-    @GetMapping("profile")
+    @GetMapping("user/profile")
     public String getProfile(Model model, @AuthenticationPrincipal User user) {
         model.addAttribute("username", user.getUsername());
         model.addAttribute("email", user.getEmail());
@@ -53,7 +52,7 @@ public class UserController {
         return "profile";
     }
 
-    @PostMapping("profile")
+    @PostMapping("user/profile")
     public String updateProfile(
             @AuthenticationPrincipal User user,
             @RequestParam String password,

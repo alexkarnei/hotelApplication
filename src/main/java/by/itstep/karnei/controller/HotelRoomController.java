@@ -25,7 +25,8 @@ public class HotelRoomController {
     HotelRoomService hotelRoomService;
 
     @GetMapping("hotelRoom")
-    public String hotelRoomList(Model model, @PageableDefault(sort = {"id"}, direction = Sort.Direction.ASC) Pageable pageable) {
+    public String hotelRoomList(Model model,
+                                @PageableDefault(sort = {"id"}, direction = Sort.Direction.ASC) Pageable pageable) {
         Page<HotelRoom> page = hotelRoomService.getAll(pageable);
         model.addAttribute("page", page);
         model.addAttribute("url", "/hotelRoom");
@@ -33,7 +34,9 @@ public class HotelRoomController {
     }
 
     @GetMapping("hotelRoom/{hotel}")
-    public String hotelRoomList(Model model, @PageableDefault(sort = {"id"}, direction = Sort.Direction.ASC) Pageable pageable, @PathVariable Hotel hotel) {
+    public String hotelRoomList(Model model,
+                                @PageableDefault(sort = {"id"}, direction = Sort.Direction.ASC) Pageable pageable,
+                                @PathVariable Hotel hotel) {
         Page<HotelRoom> page = hotelRoomService.getAllByHotel(pageable,hotel);
         System.out.println(page.toString());
         model.addAttribute("page", page);

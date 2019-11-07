@@ -16,8 +16,7 @@
             <#if messageAct??>
                 ${messageAct}
             </#if>
-            <@l.login "/home" false/>
+            <@l.login "/login" false/>
         </div>
-
     </div>
 </@pt.page>

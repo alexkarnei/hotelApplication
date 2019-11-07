@@ -28,9 +28,10 @@
         <#if hotel.roomsQuantity??>
             <td>${hotel.roomsQuantity}</td></#if>
         </td>
-        <td><a href="hotelPicture/${hotel.id}">View hotel picture</a>
+        <td><a href="hotelPictures/${hotel.id}" style="text-decoration: none; color: cadetblue;
+            }">View hotel picture</a>
         </td>
-        <td><a href="hotelRoom/${hotel.id}">View hotel room</a>
+        <td><a href="hotelRoom/${hotel.id}" style="text-decoration: none;color: cadetblue; ">View hotel room</a>
         </td>
         </tr>
         </tbody>
@@ -39,3 +40,9 @@
     </#list>
 </table>
 <@p.pager url page/>
+<a href="hotelForm">
+    <button type="button" class="btn btn-secondary">Add new hotel</button>
+</a>
+
+
+

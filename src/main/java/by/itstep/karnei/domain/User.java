@@ -12,13 +12,14 @@ import javax.validation.constraints.NotBlank;
 import java.util.Collection;
 import java.util.Objects;
 import java.util.Set;
+
 @Entity
 @Getter
 @Setter
 @Table(name = "users")
 public class User extends AbstractEntity implements UserDetails {
 
-    @NotBlank (message = "First name can't be empty")
+    @NotBlank(message = "First name can't be empty")
     private String firstName;
     @NotBlank(message = "Last name can't be empty")
     private String lastName;
@@ -47,10 +48,10 @@ public class User extends AbstractEntity implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Set<UserRole> userRoles;
 
-   /* @OneToOne(mappedBy = "user")
-    @PrimaryKeyJoinColumn
-    Guest guest;
-*/
+    /* @OneToOne(mappedBy = "user")
+     @PrimaryKeyJoinColumn
+     Guest guest;
+ */
     public boolean isAdmin() {
         return userRoles.contains(UserRole.ADMIN);
     }
@@ -59,16 +60,6 @@ public class User extends AbstractEntity implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return getUserRoles();
-    }
-
-    @Override
-    public String getPassword() {
-        return null;
-    }
-
-    @Override
-    public String getUsername() {
-        return null;
     }
 
     @Override
