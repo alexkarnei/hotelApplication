@@ -2,7 +2,7 @@
 <@pt.page>
     <h2 style="color: wheat; margin-bottom: 15px"> User: ${username}</h2>
     ${message?ifExists}
-    <form method="post">
+    <form action="/user" method="post">
         <div class="form-group row">
             <label class="col-sm-2 col-form-label" style="color: wheat">Password:</label>
             <div class="col-sm-6">

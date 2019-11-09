@@ -9,6 +9,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Data
@@ -16,15 +18,16 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = false)
 public class Hotel extends AbstractEntity {
 
+    @NotBlank(message = "Hotel title can't be empty")
     private String hotelTitle;
-
-    private int starsQuantity;
-
-    private String city ;
-
+    @NotNull(message = "Stars quantity can't be empty")
+    private Integer starsQuantity;
+    @NotBlank(message = "City can't be empty")
+    private String city;
+    @NotBlank(message = "Address can't be empty")
     private String address;
-
-    private int roomsQuantity;
+    @NotNull(message = "Rooms quantity can't be empty")
+    private Integer roomsQuantity;
 
     @OneToMany(fetch = FetchType.LAZY,
             cascade = CascadeType.ALL,

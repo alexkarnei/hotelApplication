@@ -13,13 +13,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 @Controller
+@RequestMapping
 public class UserController {
 
     @Autowired
     private UserService userService;
 
     @PreAuthorize("hasAuthority('ADMIN')")
-    @GetMapping("/user")
+    @GetMapping("user")
     public String userList(Model model) {
         model.addAttribute("users", userService.findAllUsers());
         return "userList";
@@ -34,7 +35,7 @@ public class UserController {
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
-    @PostMapping("/user")
+    @PostMapping("user")
     public String userSave(
             @RequestParam String username,
             @RequestParam Map<String, String> form,
@@ -44,10 +45,15 @@ public class UserController {
         return "redirect:/user";
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("user/profile")
     public String getProfile(Model model, @AuthenticationPrincipal User user) {
         model.addAttribute("username", user.getUsername());
-        model.addAttribute("email", user.getEmail());
+        User currentUser = userService.loadUserByUsername(user.getUsername());
+        model.addAttribute("passport", currentUser.getPassport());
+        model.addAttribute("firstName", currentUser.getFirstName());
+        model.addAttribute("lastName", currentUser.getLastName());
+        model.addAttribute("email", currentUser.getEmail());
 
         return "profile";
     }
@@ -59,7 +65,6 @@ public class UserController {
             @RequestParam String email
     ) {
         userService.updateProfile(user, password, email);
-
-        return "profile";
+        return "redirect:user/profile";
     }
 }

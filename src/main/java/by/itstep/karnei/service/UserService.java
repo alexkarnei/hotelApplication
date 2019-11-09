@@ -57,7 +57,7 @@ public class UserService implements UserDetailsService {
         if (!StringUtils.isEmpty(user.getEmail())) {
             String message = String.format(
                     "Hello, %s! \n" +
-                            "Welcome to GrodnoLift Web App. Please, visit next link: " + "http://localhost:8080/activate/%s",
+                            "Welcome to Hotel Web App. Please, visit next link: " + "http://localhost:8080/activate/%s",
                     user.getUsername(),
                     user.getActivationCode()
             );
@@ -78,7 +78,7 @@ public class UserService implements UserDetailsService {
     }
 
     public List<User> findAllUsers() {
-        return userRepo.findAll(Sort.by("id"));
+        return userRepo.findAll(Sort.by("username"));
     }
 
 

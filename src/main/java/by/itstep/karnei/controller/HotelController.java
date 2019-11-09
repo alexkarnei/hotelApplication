@@ -11,10 +11,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.Map;
@@ -34,11 +31,24 @@ public class HotelController {
         return "hotel";
     }
 
+
     @GetMapping("hotelForm")
     public String addHotel() {
         return "hotelForm";
     }
 
+    @GetMapping("hotelForm/{id}")
+    public String updateHotel(Model model,
+                              @PathVariable Long id,
+                              @PageableDefault(sort = {"id"}, direction = Sort.Direction.ASC) Pageable pageable) {
+        Hotel editHotel = hotelService.getById(id);
+        Page<Hotel> page = hotelService.getAll(pageable);
+        model.addAttribute("page", page);
+        if (editHotel != null) {
+            model.addAttribute("hotel", editHotel);
+        }
+        return "hotelForm";
+    }
     @PostMapping("hotelForm")
     public String addHotel(@Valid Hotel hotel, BindingResult bindingResult, Model model,
                            @PageableDefault(sort = {"id"}, direction = Sort.Direction.ASC) Pageable pageable) {
@@ -46,8 +56,16 @@ public class HotelController {
         return getHotel(hotel, bindingResult, model, pageable);
     }
 
+    @PostMapping("hotelForm/{id}")
+    public String updateHotel(@Valid Hotel hotel, BindingResult bindingResult, Model model,
+                              @PathVariable Long id,
+                              @PageableDefault(sort = {"id"}, direction = Sort.Direction.ASC) Pageable pageable) {
+
+        return getHotel(hotel, bindingResult, model, pageable);
+    }
+
     private String getHotel(@Valid Hotel hotel, BindingResult bindingResult, Model model,
-                             @PageableDefault(sort = {"id"}, direction = Sort.Direction.ASC) Pageable pageable) {
+                            @PageableDefault(sort = {"id"}, direction = Sort.Direction.ASC) Pageable pageable) {
         Page<Hotel> page = hotelService.getAll(pageable);
         model.addAttribute("url", "/hotel");
         model.addAttribute("page", page);

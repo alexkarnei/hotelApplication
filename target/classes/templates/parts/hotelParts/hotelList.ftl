@@ -9,6 +9,7 @@
         <th scope="col">Stars</th>
         <th scope="col">Address</th>
         <th scope="col">Rooms quantity</th>
+        <th scope="col">Editing</th>
         <th scope="col"></th>
         <th scope="col"></th>
     </tr>
@@ -28,6 +29,8 @@
         <#if hotel.roomsQuantity??>
             <td>${hotel.roomsQuantity}</td></#if>
         </td>
+
+        <td><a href="/hotelForm/${hotel.id}" style="text-decoration: none; color: cadetblue;}">Сhange</a></td>
         <td><a href="hotelPictures/${hotel.id}" style="text-decoration: none; color: cadetblue;
             }">View hotel picture</a>
         </td>
@@ -43,6 +46,7 @@
 <a href="hotelForm">
     <button type="button" class="btn btn-secondary">Add new hotel</button>
 </a>
+
 
 
 

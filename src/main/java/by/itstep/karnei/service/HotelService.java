@@ -9,6 +9,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.Optional;
+
 @Service
 public class HotelService {
     @Autowired
@@ -29,4 +31,8 @@ public class HotelService {
         return hotelRepo.findAll(pageable);
     }
 
+    public Hotel getById(Long id) {
+        Optional<Hotel> owner = hotelRepo.findById(id);
+        return owner.orElse(null);
+    }
 }

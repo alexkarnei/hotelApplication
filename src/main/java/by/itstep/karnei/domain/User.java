@@ -48,10 +48,6 @@ public class User extends AbstractEntity implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Set<UserRole> userRoles;
 
-    /* @OneToOne(mappedBy = "user")
-     @PrimaryKeyJoinColumn
-     Guest guest;
- */
     public boolean isAdmin() {
         return userRoles.contains(UserRole.ADMIN);
     }
