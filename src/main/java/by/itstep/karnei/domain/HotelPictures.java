@@ -12,8 +12,6 @@ import javax.persistence.ManyToOne;
 @Entity
 public class HotelPictures extends AbstractEntity {
 
-    private String alt;
-
     private String title;
 
     private String url;

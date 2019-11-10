@@ -4,7 +4,6 @@
     <thead class="thead-dark">
     <tr>
         <th scope="col">Id</th>
-        <th scope="col">Alt</th>
         <th scope="col">Title</th>
         <th scope="col">Url</th>
         <th scope="col">Hotel</th>
@@ -14,8 +13,6 @@
         <tbody>
         <#if hotelPicture.id??>
             <td>${hotelPicture.id}</td></#if>
-        <#if hotelPicture.alt??>
-            <td>${hotelPicture.alt}</td></#if>
         <#if hotelPicture.title??>
             <td>${hotelPicture.title}</td></#if>
         <#if hotelPicture.url??>

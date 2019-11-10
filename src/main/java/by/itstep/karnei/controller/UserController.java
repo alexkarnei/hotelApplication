@@ -45,17 +45,15 @@ public class UserController {
         return "redirect:/user";
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("user/profile")
     public String getProfile(Model model, @AuthenticationPrincipal User user) {
         model.addAttribute("username", user.getUsername());
-        User currentUser = userService.loadUserByUsername(user.getUsername());
-        model.addAttribute("passport", currentUser.getPassport());
-        model.addAttribute("firstName", currentUser.getFirstName());
-        model.addAttribute("lastName", currentUser.getLastName());
-        model.addAttribute("email", currentUser.getEmail());
+        model.addAttribute("passport", user.getPassport());
+        model.addAttribute("firstName", user.getFirstName());
+        model.addAttribute("lastName", user.getLastName());
+        model.addAttribute("email", user.getEmail());
 
-        return "profile";
+        return "redirect: user/profile";
     }
 
     @PostMapping("user/profile")
@@ -65,6 +63,6 @@ public class UserController {
             @RequestParam String email
     ) {
         userService.updateProfile(user, password, email);
-        return "redirect:user/profile";
+        return "redirect: user/profile";
     }
 }

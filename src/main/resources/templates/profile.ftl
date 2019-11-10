@@ -2,7 +2,7 @@
 <@pt.page>
     <h2 style="color: wheat; margin-bottom: 15px"> User: ${username}</h2>
     ${message?ifExists}
-    <form action="/user" method="post">
+    <form method="post">
         <div class="form-group row">
             <label class="col-sm-2 col-form-label" style="color: wheat">Password:</label>
             <div class="col-sm-6">
@@ -24,7 +24,8 @@
         <div class="form-group row">
             <label class="col-sm-2 col-form-label" style="color: wheat">First Name::</label>
             <div class="col-sm-6">
-                <input type="text" name="firstName" class="form-control" placeholder="First name" value="${firstName!''}"/>
+                <input type="text" name="firstName" class="form-control" placeholder="First name"
+                       value="${firstName!''}"/>
             </div>
         </div>
         <div class="form-group row">

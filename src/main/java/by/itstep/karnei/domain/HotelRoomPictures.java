@@ -13,8 +13,6 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class HotelRoomPictures extends AbstractEntity {
 
-    private String alt;
-
     private  String title;
     private String url;
 

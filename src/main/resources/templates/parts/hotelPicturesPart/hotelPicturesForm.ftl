@@ -6,29 +6,24 @@
             <input type="hidden" name="_csrf" value="${_csrf.token}"/>
             <input type="hidden" name="id" value="<#if hotelPictures?? && hotelPictures.id??>${hotelPictures.id}</#if>">
             <div class="form-group">
-                <input type="text" name="alt"
-                       class="form-control ${(altError??)?string('is-invalid', '')}"
-                       value="<#if hotelPictures?? && hotelPictures.alt??>${hotelPictures.alt}</#if>"
-                       placeholder="Enter pictures alt">
-                <div class="invalid-feedback">
-                    <#if altError??>${altError}</#if>
-                </div>
-            </div>
-            <div class="form-group">
                 <input type="text" name="title" class="form-control ${(titleError??)?string('is-invalid', '')}"
                        value="<#if hotelPictures?? && hotelPictures.title??>${hotelPictures.title}</#if>"
                        placeholder="Enter the title">
+                <#if titleError??>
                 <div class="invalid-feedback">
-                    <#if titleError??>${titleError}</#if>
+                    ${titleError}
                 </div>
+                </#if>
             </div>
             <div class="form-group">
                 <input type="text" name="url" class="form-control ${(urlError??)?string('is-invalid', '')}"
                        value="<#if hotelPictures?? && hotelPictures.url??>${hotelPictures.url}</#if>"
                        placeholder="Enter the url">
+                <#if urlError??>
                 <div class="invalid-feedback">
-                    <#if urlError??>${urlError}</#if>
+                    ${urlError}
                 </div>
+                </#if>
             </div>
             <div class="form-group mt-2">
                 <input type="submit" class="btn btn-primary" value="Submit">

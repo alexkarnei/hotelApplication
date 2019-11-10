@@ -4,6 +4,7 @@ import by.itstep.karnei.domain.Hotel;
 import by.itstep.karnei.domain.HotelPictures;
 import by.itstep.karnei.service.HotelPicturesService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -15,9 +16,11 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.Map;
+
 @Controller
 @RequestMapping
 public class HotelPicturesController {
+
     @Autowired
     HotelPicturesService hotelPicturesService;
 
@@ -35,7 +38,6 @@ public class HotelPicturesController {
                                     @PageableDefault(sort = {"id"}, direction = Sort.Direction.ASC) Pageable pageable,
                                     @PathVariable Hotel hotel) {
         Page<HotelPictures> page = hotelPicturesService.getAllByHotel(pageable, hotel);
-        System.out.println(page.toString());
         model.addAttribute("page", page);
         model.addAttribute("url", "/hotelPictures");
         return "hotelPictures";
@@ -47,7 +49,7 @@ public class HotelPicturesController {
             Model model,
             BindingResult bindingResult,
             @RequestParam("url") String url
-    ) {
+            ) {
         Iterable<HotelPictures> hotelsPicture =
                 hotelPicturesService.hotelPicturesList();
         if (!url.isEmpty()) {
@@ -64,7 +66,8 @@ public class HotelPicturesController {
             Map<String, String> errorsMap = ControllerUtils.getErrors(bindingResult);
             model.mergeAttributes(errorsMap);
             model.addAttribute("hotelPictures", hotelPictures);
-            return "hotelPictures";
+            hotelPicturesService.saveHotelPictures(hotelPictures);
+            return "redirect:hotelPictures";
         } else {
             hotelPicturesService.saveHotelPictures(hotelPictures);
             return "redirect:hotelPictures";

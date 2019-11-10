@@ -26,17 +26,6 @@
                     </div>
                 </#if>
             </div>
-            <#--<div class="form-group">
-            <select id="record-status" class="form-control" name="starsQuantity">
-                <option value="">Select number of stars</option>
-                <option value="">Non star</option>
-                <option value="1">1 star</option>
-                <option value="2">2 stars</option>
-                <option value="3">3 stars</option>
-                <option value="4">4 stars</option>
-                <option value="5">5 stars</option>
-            </select>
-            </div>-->
             <div class="form-group">
                 <input type="text" name="city" class="form-control ${(cityError??)?string('is-invalid', '')}"
                        value="<#if hotel?? && hotel.city??>${hotel.city}</#if>"

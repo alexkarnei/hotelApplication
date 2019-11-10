@@ -1,5 +1,6 @@
 package by.itstep.karnei.service;
 
+import by.itstep.karnei.domain.Hotel;
 import by.itstep.karnei.domain.User;
 import by.itstep.karnei.domain.UserRole;
 import by.itstep.karnei.repository.UserRepo;
@@ -63,6 +64,11 @@ public class UserService implements UserDetailsService {
             );
             mailSenderService.send(user.getEmail(), "Activation Code!", message);
         }
+    }
+
+    public User getById(Long id) {
+        Optional<User> owner = userRepo.findById(id);
+        return owner.orElse(null);
     }
 
     public boolean activateUser(String code) {
