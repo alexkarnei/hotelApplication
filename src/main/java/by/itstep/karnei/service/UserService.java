@@ -5,6 +5,8 @@ import by.itstep.karnei.domain.User;
 import by.itstep.karnei.domain.UserRole;
 import by.itstep.karnei.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -81,6 +83,10 @@ public class UserService implements UserDetailsService {
             userRepo.save(userByCode);
             return true;
         }
+    }
+
+    public Page <User> getAll (Pageable pageable){
+        return userRepo.findAll(pageable);
     }
 
     public List<User> findAllUsers() {

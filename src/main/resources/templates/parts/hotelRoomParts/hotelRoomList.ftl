@@ -10,6 +10,7 @@
         <th scope="col">Hotel</th>
         <th scope="col"></th>
         <th scope="col"></th>
+        <th scope="col"></th>
     </tr>
     </thead>
     <#list page.content as hotelRoom>
@@ -35,3 +36,6 @@
     </#list>
 </table>
 <@p.pager url page/>
+<a href="hotelRoomForm">
+    <button type="button" class="btn btn-secondary">Add new hotel room</button>
+</a>

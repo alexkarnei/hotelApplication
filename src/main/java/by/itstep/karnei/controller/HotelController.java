@@ -73,7 +73,7 @@ public class HotelController {
             model.addAttribute("page", page);
             Map<String, String> errorsMap = ControllerUtils.getErrors(bindingResult);
             model.mergeAttributes(errorsMap);
-            model.addAttribute("oneOwner", hotel);
+            model.addAttribute("oneHotel", hotel);
             return "hotelForm";
         } else {
             if (hotelService.saveHotel(hotel)) {

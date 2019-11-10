@@ -60,7 +60,7 @@ public class HotelRoomController {
             return "hotelRoom";
         } else {
             hotelRoomService.saveHotelRoom(hotelRoom);
-            return "redirect:hotelRoom";
+            return "hotelRoom";
         }
     }
 
