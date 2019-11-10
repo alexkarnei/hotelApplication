@@ -31,8 +31,8 @@ public class HotelRoom extends AbstractEntity {
     @JoinColumn(name = "hotel_id")
     private Hotel hotel;
 
-    @NotNull
-    private int cost;
+    @NotNull(message = "Cost con't empty")
+    private Integer cost;
 
     private LocalDate checkIn;
     private LocalDate checkOut;

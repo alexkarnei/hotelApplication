@@ -25,9 +25,9 @@
         <#if hotelRoom.hotel.id??>
             <td>${hotelRoom.hotel.id}</td></#if>
         </td>
-        <td><a href="hotelRoomPicture/${hotelRoom.id}">View hotel picture</a>
+        <td><a href="hotelRoomPicture/${hotelRoom.id}" style="color: wheat">View hotel picture</a>
         </td>
-        <td><a href="bookHotelRoom/${hotelRoom.id}">Book hotel room</a>
+        <td><a href="bookHotelRoom/${hotelRoom.id}" style="color: wheat">Book hotel room</a>
         </td>
         </tbody>
     <#else>

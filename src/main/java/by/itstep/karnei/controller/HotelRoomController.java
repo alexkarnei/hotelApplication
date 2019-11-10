@@ -36,7 +36,7 @@ public class HotelRoomController {
     public String hotelRoomList(Model model,
                                 @PageableDefault(sort = {"id"}, direction = Sort.Direction.ASC) Pageable pageable,
                                 @PathVariable Hotel hotel) {
-        Page<HotelRoom> page = hotelRoomService.getAllByHotel(pageable,hotel);
+        Page<HotelRoom> page = hotelRoomService.getAllByHotel(pageable, hotel);
         System.out.println(page.toString());
         model.addAttribute("page", page);
         model.addAttribute("url", "/hotelRoom");
@@ -51,7 +51,7 @@ public class HotelRoomController {
     ) {
         Iterable<HotelRoom> hotelRooms = hotelRoomService.hotelRoomList();
         if (bindingResult.hasErrors()) {
-                model.addAttribute("hotelError", null);
+            model.addAttribute("hotelError", null);
             model.addAttribute("hotelRoom", hotelRoom.getHotel());
             model.addAttribute("hotelRoom", hotelRooms);
             Map<String, String> errorsMap = ControllerUtils.getErrors(bindingResult);

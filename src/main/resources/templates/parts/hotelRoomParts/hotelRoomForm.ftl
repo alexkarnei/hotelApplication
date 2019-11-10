@@ -1,58 +1,46 @@
 <div class="container mt-5" style="width: 50%">
-    <h3 style="color: wheat"> Edit hotel </h3>
+    <h3 style="color: wheat"> Edit hotelRoom </h3>
     <#if savingReport??>${savingReport}</#if>
     <div class="form-group mt-3">
         <form method="post">
             <input type="hidden" name="_csrf" value="${_csrf.token}"/>
             <input type="hidden" name="id" value="<#if hotelRoom?? && hotelRoom.id??>${hotelRoom.id}</#if>">
+           <#-- <div class="form-group">
+                <#list roomType as type>
+                    <div>
+                        <label style="color: wheat">
+                            <input type="checkbox" style="margin-top: 15px" name="${type}" ${userRoom.roomType?seq_contains(type)?string("checked", "")}> ${type}
+                        </label>
+                    </div>
+                </#list>
+            </div>-->
             <div class="form-group">
-                <input type="text" name="hotelTitle"
-                       class="form-control ${(hotelTitleError??)?string('is-invalid', '')}"
-                       value="<#if hotel?? && hotel.hotelTitle??>${hotel.hotelTitle}</#if>"
-                       placeholder="Enter hotel title">
-                <#if hoteTitleError??>
+                <input type="number" name="cost" class="form-control ${(costError??)?string('is-invalid', '')}"
+                       value="<#if hotelRoom?? && hotelRoom.cost??>${hotelRoom.cost}</#if>"
+                       placeholder="Enter cost hotel room">
+                <#if costError??>
                     <div class="invalid-feedback">
-                        ${hotelTitleError}
+                        ${costError}
                     </div>
                 </#if>
             </div>
             <div class="form-group">
-                <input type="number" name="starsQuantity" class="form-control ${(starsQuantityError??)?string('is-invalid', '')}"
-                       value="<#if hotel?? && hotel.starsQuantity??>${hotel.starsQuantity}</#if>"
-                       placeholder="Enter the stars Quantity">
-                <#if starsQuantityError??>
+                <input type="date" name="checkIn" class="form-control ${(checkInError??)?string('is-invalid', '')}"
+                       value=""
+                       placeholder="Enter the checkIn date">
+                <#if checkInError??>
                     <div class="invalid-feedback">
-                        ${starsQuantityError}
+                        ${checkinError}
                     </div>
                 </#if>
             </div>
             <div class="form-group">
-                <input type="text" name="city" class="form-control ${(cityError??)?string('is-invalid', '')}"
-                       value="<#if hotel?? && hotel.city??>${hotel.city}</#if>"
-                       placeholder="Enter the city">
-                <#if cityError??>
+                <input type="date" name="checkOut" class="form-control ${(chekOutError??)?string('is-invalid', '')}"
+                       value=""
+                       placeholder="Enter the checkOut date">
+                <#if checkOutError??>
                     <div class="invalid-feedback">
-                        ${cityError}
-                    </div>
-                </#if>
-            </div>
-            <div class="form-group">
-                <input type="text" name="address" class="form-control ${(addressError??)?string('is-invalid', '')}"
-                       value="<#if hotel?? && hotel.address??>${hotel.address}</#if>"
-                       placeholder="Enter the address">
-                <#if addressError??>
-                    <div class="invalid-feedback">
-                        ${addressError}
-                    </div>
-                </#if>
-            </div>
-            <div class="form-group">
-                <input type="number" name="roomsQuantity" class="form-control ${(roomsQuantityError??)?string('is-invalid', '')}"
-                       value="<#if hotel?? && hotel.roomsQuantity??>${hotel.roomsQuantity}</#if>"
-                       placeholder="Enter the room Quantity">
-                <#if roomsQuantityError??>
-                    <div class="invalid-feedback">
-                        ${roomsQuantityError}
+                        ${checkOutError}
                     </div>
                 </#if>
             </div>
