@@ -43,12 +43,13 @@ public class HotelPicturesController {
         return "hotelPictures";
     }
 
-    @PostMapping("hotelPictures")
+    @PostMapping("hotelPictures/{hotel}")
     public String hotelPictureSave(
             @Valid HotelPictures hotelPictures,
             Model model,
             BindingResult bindingResult,
-            @RequestParam("url") String url
+            @RequestParam("url") String url,
+            @PathVariable Hotel hotel
             ) {
         Iterable<HotelPictures> hotelsPicture =
                 hotelPicturesService.hotelPicturesList();
@@ -66,7 +67,6 @@ public class HotelPicturesController {
             Map<String, String> errorsMap = ControllerUtils.getErrors(bindingResult);
             model.mergeAttributes(errorsMap);
             model.addAttribute("hotelPictures", hotelPictures);
-            hotelPicturesService.saveHotelPictures(hotelPictures);
             return "redirect:hotelPictures";
         } else {
             hotelPicturesService.saveHotelPictures(hotelPictures);

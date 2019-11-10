@@ -3,7 +3,6 @@ package by.itstep.karnei.controller;
 import by.itstep.karnei.domain.Hotel;
 import by.itstep.karnei.domain.HotelRoom;
 import by.itstep.karnei.service.HotelRoomService;
-import by.itstep.karnei.service.HotelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

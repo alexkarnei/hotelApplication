@@ -18,7 +18,7 @@
         <#if hotelPicture.url??>
             <td>${hotelPicture.url}</td></#if>
         <#if hotelPicture.hotel??>
-            <td>${hotelPicture.hotel}</td></#if>
+            <td>${hotelPicture.hotel.id}</td></#if>
         </tbody>
     <#else>
         Hotel Pictures list is empty!
