@@ -1,3 +1,4 @@
+<#include "../security.ftl">
 <#import "../pager.ftl" as p>
 <@p.pager url page/>
 <table class="table" style="background: white">
@@ -43,9 +44,11 @@
     </#list>
 </table>
 <@p.pager url page/>
+<#if isAdmin>
 <a href="hotelForm">
     <button type="button" class="btn btn-secondary">Add new hotel</button>
 </a>
+</#if>
 
 
 

@@ -1,3 +1,4 @@
+<#include "../security.ftl">
 <#import "../pager.ftl" as p>
 <@p.pager url page/>
 <table class="table" style="background: white">
@@ -18,7 +19,7 @@
         <#if hotelPicture.url??>
             <td>${hotelPicture.url}</td></#if>
         <#if hotelPicture.hotel??>
-            <td>${hotelPicture.hotel.id}</td></#if>
+            <td>${hotelPicture.hotel.hotelTitle}</td></#if>
         </tbody>
     <#else>
         Hotel Pictures list is empty!

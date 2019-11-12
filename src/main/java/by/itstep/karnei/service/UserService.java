@@ -69,8 +69,8 @@ public class UserService implements UserDetailsService {
     }
 
     public User getById(Long id) {
-        Optional<User> owner = userRepo.findById(id);
-        return owner.orElse(null);
+        Optional<User> user = userRepo.findById(id);
+        return user.orElse(null);
     }
 
     public boolean activateUser(String code) {
@@ -110,11 +110,12 @@ public class UserService implements UserDetailsService {
     }
 
     public void updateProfile(User user, String password, String email) {
+        User userFromDB = getById(user.getId());
         String userEmail = user.getEmail();
         boolean isEmailChanged = (email != null && email.equals(userEmail) || userEmail != null && userEmail.equals(email));
 
         if (isEmailChanged) {
-            user.setEmail(email);
+            userFromDB.setEmail(email);
 
             if (!StringUtils.isEmpty(email)) {
                 user.setActivationCode(UUID.randomUUID().toString());
@@ -125,10 +126,10 @@ public class UserService implements UserDetailsService {
             user.setPassword(passwordEncoder.encode(password));
         }
 
-        userRepo.save(user);
+        userRepo.save(userFromDB);
 
         if (isEmailChanged) {
-            sendMessage(user);
+            sendMessage(userFromDB);
         }
     }
 }

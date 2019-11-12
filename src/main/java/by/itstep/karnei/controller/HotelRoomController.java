@@ -43,11 +43,13 @@ public class HotelRoomController {
         return "hotelRoom";
     }
 
-    @PostMapping("hotelRoom")
+
+    @PostMapping("hotelRoom/{hotel}")
     public String hotelRoomSave(
             @Valid HotelRoom hotelRoom,
             Model model,
-            BindingResult bindingResult
+            BindingResult bindingResult,
+             @PathVariable Hotel hotel
     ) {
         Iterable<HotelRoom> hotelRooms = hotelRoomService.hotelRoomList();
         if (bindingResult.hasErrors()) {
@@ -57,10 +59,10 @@ public class HotelRoomController {
             Map<String, String> errorsMap = ControllerUtils.getErrors(bindingResult);
             model.mergeAttributes(errorsMap);
             model.addAttribute("hotelRoom", hotelRoom);
-            return "hotelRoom";
+            return "redirect:{hotel}";
         } else {
             hotelRoomService.saveHotelRoom(hotelRoom);
-            return "hotelRoom";
+            return "redirect: {hotel}";
         }
     }
 

@@ -9,6 +9,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.Optional;
+
 @Service
 public class HotelPicturesService {
 
@@ -32,5 +34,10 @@ public class HotelPicturesService {
 
     public Page<HotelPictures> getAllByHotel(Pageable pageable, Hotel hotel) {
         return hotelPictureRepo.findAllByHotel(pageable, hotel);
+    }
+
+    public HotelPictures getById(Long id) {
+        Optional<HotelPictures> owner = hotelPictureRepo.findById(id);
+        return owner.orElse(null);
     }
 }

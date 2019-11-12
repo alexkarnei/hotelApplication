@@ -1,3 +1,4 @@
+<#include "../security.ftl">
 <#import "../pager.ftl" as p>
 <@p.pager url page/>
 <table class="table" style="background-color: white">
@@ -18,17 +19,17 @@
         <#if hotelRoom.id??>
             <td>${hotelRoom.id}</td></#if>
         <#if hotelRoom.roomType??>
-            <td><#list hotelRoom.roomType as roomType>${roomType}<#sep>, </#list></td></#if>
+            <td>${hotelRoom.roomType}</td></#if>
         <#if hotelRoom.free??>
-            <td>${hotelRoom.free?then( "true"," false")}</td></#if>
+            <td>${hotelRoom.free?then( "false"," true")}</td></#if>
         <#if hotelRoom.cost??>
             <td>${hotelRoom.cost}</td></#if>
         <#if hotelRoom.hotel.id??>
-            <td>${hotelRoom.hotel.id}</td></#if>
+            <td>${hotelRoom.hotel.hotelTitle}</td></#if>
         </td>
-        <td><a href="hotelRoomPicture/${hotelRoom.id}" style="color: wheat">View hotel picture</a>
+        <td><a href="hotelRoomPicture/${hotelRoom.id}" style="color: dodgerblue">View hotel picture</a>
         </td>
-        <td><a href="bookHotelRoom/${hotelRoom.id}" style="color: wheat">Book hotel room</a>
+        <td><a href="bookHotelRoom/${hotelRoom.id}" style="color: dodgerblue">Book hotel room</a>
         </td>
         </tbody>
     <#else>
@@ -36,6 +37,3 @@
     </#list>
 </table>
 <@p.pager url page/>
-<a href="hotelRoomForm">
-    <button type="button" class="btn btn-secondary">Add new hotel room</button>
-</a>

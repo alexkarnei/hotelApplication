@@ -29,10 +29,10 @@ public class Hotel extends AbstractEntity {
     @NotNull(message = "Rooms quantity can't be empty")
     private Integer roomsQuantity;
 
-    @OneToMany(fetch = FetchType.LAZY,
+    /*@OneToMany(fetch = FetchType.LAZY,
             cascade = CascadeType.ALL,
             orphanRemoval = true,
             mappedBy = "hotel")
     @JsonIgnore
-    List<HotelPictures> pictures;
+    List<HotelPictures> pictures;*/
 }

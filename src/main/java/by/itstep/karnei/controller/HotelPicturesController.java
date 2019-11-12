@@ -4,7 +4,6 @@ import by.itstep.karnei.domain.Hotel;
 import by.itstep.karnei.domain.HotelPictures;
 import by.itstep.karnei.service.HotelPicturesService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -40,6 +39,7 @@ public class HotelPicturesController {
         Page<HotelPictures> page = hotelPicturesService.getAllByHotel(pageable, hotel);
         model.addAttribute("page", page);
         model.addAttribute("url", "/hotelPictures");
+
         return "hotelPictures";
     }
 
@@ -48,29 +48,21 @@ public class HotelPicturesController {
             @Valid HotelPictures hotelPictures,
             Model model,
             BindingResult bindingResult,
-            @RequestParam("url") String url,
             @PathVariable Hotel hotel
-            ) {
+    ) {
         Iterable<HotelPictures> hotelsPicture =
                 hotelPicturesService.hotelPicturesList();
-        if (!url.isEmpty()) {
-            hotelPictures.setUrl(url);
-        }
-        if (bindingResult.hasErrors() || url.isEmpty()) {
-            if (url.isEmpty()) {
-                model.addAttribute("urlError", "Please fill the correct address");
-            } else {
-                model.addAttribute("urlError", null);
-            }
+        if (bindingResult.hasErrors() /*|| url.isEmpty()*/) {
             model.addAttribute("url", hotelPictures.getUrl());
             model.addAttribute("hotelPictures", hotelsPicture);
             Map<String, String> errorsMap = ControllerUtils.getErrors(bindingResult);
             model.mergeAttributes(errorsMap);
             model.addAttribute("hotelPictures", hotelPictures);
-            return "redirect:hotelPictures";
+            return "redirect:{hotel}";
         } else {
             hotelPicturesService.saveHotelPictures(hotelPictures);
-            return "redirect:hotelPictures";
+            return "redirect:{hotel}";
         }
     }
 }
+

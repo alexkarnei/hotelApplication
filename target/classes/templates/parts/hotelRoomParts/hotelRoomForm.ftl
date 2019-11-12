@@ -1,3 +1,4 @@
+<script src="http://code.jquery.com/jquery-1.8.3.js"></script>
 <div class="container mt-5" style="width: 50%">
     <h3 style="color: wheat"> Edit hotelRoom </h3>
     <#if savingReport??>${savingReport}</#if>
@@ -5,15 +6,17 @@
         <form method="post">
             <input type="hidden" name="_csrf" value="${_csrf.token}"/>
             <input type="hidden" name="id" value="<#if hotelRoom?? && hotelRoom.id??>${hotelRoom.id}</#if>">
-           <#-- <div class="form-group">
-                <#list roomType as type>
-                    <div>
-                        <label style="color: wheat">
-                            <input type="checkbox" style="margin-top: 15px" name="${type}" ${userRoom.roomType?seq_contains(type)?string("checked", "")}> ${type}
-                        </label>
-                    </div>
-                </#list>
-            </div>-->
+            <div class="form-group">
+                <select class="form-control" id="dropdown" onchange="changeHiddenInput(this)">
+                    <option value="">Choose room type</option>
+                    <option value="SINGLE">Single</option>
+                    <option value="DOUBLE">Double</option>
+                    <option value="TRIPLE">Triple</option>
+                    <option value="QUADRUPLE">Quadruple</option>
+                </select>
+                <input id="hiddenInput" type="hidden" name="roomType"
+                       value="<#if hotelRoom?? && hotelRoom.roomType??>result</#if>">
+            </div>
             <div class="form-group">
                 <input type="number" name="cost" class="form-control ${(costError??)?string('is-invalid', '')}"
                        value="<#if hotelRoom?? && hotelRoom.cost??>${hotelRoom.cost}</#if>"
@@ -45,8 +48,24 @@
                 </#if>
             </div>
             <div class="form-group mt-2">
-                <input type="submit" class="btn btn-primary" value="Submit">
+                <input type="submit" class="btn btn-primary" onclick="changeHiddenInput (objDropDown)" value="Submit">
             </div>
         </form>
     </div>
 </div>
+<script>
+    var select;
+    window.onload = function () {
+        select = document.getElementById('dropdown');
+        console.log(select);
+    }
+
+    function changeHiddenInput(objDropDown) {
+        console.log(objDropDown);
+        var objHidden = document.getElementById("hiddenInput");
+        objHidden.value = objDropDown.value;
+        var a = objHidden.value;
+        var result;
+        result.innerHTML = a || "";
+    }
+</script>

@@ -5,20 +5,20 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.chrono.ChronoLocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Data
 @Entity
 public class HotelRoom extends AbstractEntity {
 
-    @ElementCollection(targetClass = RoomType.class, fetch = FetchType.EAGER)
-    @CollectionTable(name = "room_type", joinColumns = @JoinColumn(name = "room_id"))
-    @Enumerated(EnumType.STRING)
-    private List<RoomType> roomType;
+    @NotBlank(message = "Room type can't empty")
+    private String roomType;
 
     @OneToMany(fetch = FetchType.LAZY,
             cascade = CascadeType.ALL,

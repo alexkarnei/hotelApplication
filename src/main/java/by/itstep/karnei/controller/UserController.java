@@ -2,6 +2,7 @@ package by.itstep.karnei.controller;
 
 import by.itstep.karnei.domain.User;
 import by.itstep.karnei.domain.UserRole;
+import by.itstep.karnei.repository.UserRepo;
 import by.itstep.karnei.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
